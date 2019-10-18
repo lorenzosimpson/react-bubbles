@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
@@ -11,7 +11,6 @@ const ColorList = ({ colors, updateColors }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
-
 
 
   const editColor = color => {
@@ -29,12 +28,9 @@ const ColorList = ({ colors, updateColors }) => {
     .put(`/api/colors/${colorToEdit.id}`, colorToEdit)
     .then(res => {
       console.log(res)
-      updateColors(colors, res.data)
-      
-      
     })
     .catch(err => console.log(err))
-
+    window.location.reload(); //temporary solution for reload required
   };
 
   const deleteColor = color => {
