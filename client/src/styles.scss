@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-
+@import './scss/Login.scss';
 html,
 body,
 #root,
@@ -81,6 +81,8 @@ form {
 
   input {
     width: 100px;
+    border-radius: 5px;
+    margin-top: 10px;
   }
 }
 

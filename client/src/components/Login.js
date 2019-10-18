@@ -34,10 +34,15 @@ const Login = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='login-form-container' onSubmit={handleSubmit}>
+      <div className='form-box'>
+        <h1>Welcome!</h1>
+        <h3>Please log in</h3>
         <input type='text' name='username' onChange={handleChange}></input>
         <input type='password' name='password' onChange={handleChange}></input>
         <button>Log in</button>
+      </div>
+        
     </form>
   );
 };
