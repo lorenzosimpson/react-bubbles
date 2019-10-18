@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Route } from 'react-router-dom';
 import axios from "axios";
 
 import Bubbles from "./Bubbles";
@@ -22,7 +23,10 @@ const BubblePage = () => {
 
   return (
     <>
-      <ColorList colors={colorList} updateColors={setColorList} />
+      <Route render={props => {
+        return <ColorList {...props} colors={colorList} updateColors={setColorList} />
+      }} />
+      {/* // <ColorList colors={colorList} updateColors={setColorList} /> */}
       <Bubbles colors={colorList} />
     </>
   );
