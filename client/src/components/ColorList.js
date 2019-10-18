@@ -28,6 +28,7 @@ const ColorList = ({colors, updateColors}) => {
       .get(`/api/colors`)
       .then(res => updateColors(res.data))
       .catch(err => console.log(err))
+      setEditing(false)
     })
     .catch(err => console.log(err))
   };
@@ -36,6 +37,7 @@ const ColorList = ({colors, updateColors}) => {
     axiosWithAuth() 
     .delete(`/api/colors/${color.id}`)
     .then(res => {
+      setEditing(false)
       updateColors(() => colors.filter(item => item.id !== color.id))
     })
     .catch(err => console.log(err))
