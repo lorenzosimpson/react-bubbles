@@ -23,9 +23,7 @@ const BubblePage = () => {
 
   return (
     <>
-      <Route render={props => {
-        return <ColorList {...props} colors={colorList} updateColors={setColorList} />
-      }} />
+      <ColorList colors={colorList} updateColors={setColorList} />
       <Bubbles colors={colorList} />
     </>
   );
