@@ -8,9 +8,8 @@ const initialColor = {
   code: { hex: "" }
 };
 
-const ColorList = (props) => {
+const ColorList = ({colors, updateColors}) => {
 
-  console.log(props.colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
 
@@ -30,7 +29,7 @@ const ColorList = (props) => {
       console.log(res)
     })
     .catch(err => console.log(err))
-    window.location.reload(); //temporary solution for reload required
+    //temporary solution for reload required
   };
 
   const deleteColor = color => {
@@ -38,7 +37,7 @@ const ColorList = (props) => {
     axiosWithAuth() 
     .delete(`/api/colors/${color.id}`)
     .then(res => {
-      window.location.reload();
+      updateColors(() => colors.filter(item => item.id !== color.id))
     })
     .catch(err => console.log(err))
   };
@@ -47,7 +46,7 @@ const ColorList = (props) => {
     <div className="colors-wrap">
       <p>colors</p>
       <ul>
-        {props.colors.map(color => (
+        {colors.map(color => (
           <li key={color.color} onClick={() => editColor(color)}>
             <span>
               <span className="delete" onClick={() => deleteColor(color)}>
