@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axiosWithAuth from '../utils/axiosWithAuth';
-import * as Yup from 'yup';
+
 
 
 
@@ -28,9 +28,12 @@ const Login = (props) => {
     .then(res => {
       console.log(res)
       localStorage.setItem('token', res.data.payload)
-      props.history.push(`/colors`)
+      props.history.push(`/colors`) 
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err)
+      if (!localStorage.getItem('token')) window.alert('Wrong username or password')
+    })
     
   }
 

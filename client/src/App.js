@@ -12,9 +12,9 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-        <Route exact path="/login" component={FormikLogin} />
+        <Route exact path="/login" component={Login} />
         <PrivateRoute path='/colors' component={BubblePage} />
-        <Route component={FormikLogin} />
+        <Route component={Login} />
         </Switch>
  
         

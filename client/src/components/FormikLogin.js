@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { withFormik, Form, Field } from 'formik';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 
 
@@ -11,11 +12,13 @@ const LoginForm = ({values, errors, touched, status }) => {
         password: ''
       })
 
+
       useEffect(() => {
         if (status) {
             setCredentials([...credentials, status])
         }
     }, [status])
+
 
     return (
         <>
@@ -45,7 +48,7 @@ const LoginForm = ({values, errors, touched, status }) => {
     )  
 } // end component
 
-const FormikLogin = withFormik({
+const FormikLogin =  withFormik({
     mapPropsToValues({username, password}) {
         return {
             username: username || '',
@@ -58,12 +61,14 @@ const FormikLogin = withFormik({
         password: Yup.string().min(6, 'Password must be at least 6 characters').required('You must have a password'),
     }),
 
+
     handleSubmit(values) {
         axiosWithAuth()
         .post(`/api/login`, values)
         .then(res => {
             console.log(res)
             localStorage.setItem('token', res.data.payload)
+
         })
         .catch(err => console.log(err))
     }
