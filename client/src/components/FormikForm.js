@@ -25,7 +25,10 @@ export default class LoginForm extends React.Component {
                             localStorage.setItem('token', res.data.payload)
                             history.push('/colors')
                          })
-                        .catch(err => console.log(err))
+                        .catch(err => {
+                            console.log(err)
+                            window.alert('An error occurred, please try again')
+                        })
                 }}
                 render={({ errors, status, touched}) => (
                     <Form className='login-form-container'>
@@ -35,17 +38,18 @@ export default class LoginForm extends React.Component {
                         name='username'
                         placeholder='Username' 
                         />
+                        {touched.username && errors.username && (<p>{errors.username}</p>)} 
                 
                         <Field type='password' 
                         name='password'
                         placeholder='password'
                         />
-                
+                        {touched.password && errors.password && (<p>{errors.password}</p>)}
+
                         <button type='submit'>Log in</button>
                         
                             {/* form validation checks */}
-                        {touched.username && errors.username && (<p>{errors.username}</p>)} 
-                        {touched.password && errors.password && (<p>{errors.password}</p>)}
+                        
                         </div>
                       
                     </Form>
