@@ -3,9 +3,9 @@ import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
-export default class LoginForm extends React.Component {
-    render() {
-        const {history} = this.props;
+
+const LoginForm = (props) => {
+        const {history} = props;
         return (
             <Formik
                 initialValues={{
@@ -56,6 +56,6 @@ export default class LoginForm extends React.Component {
                 )}
              />
         )
-
-    }
 }
+
+export default LoginForm;
