@@ -14,8 +14,8 @@ const LoginForm = (props) => {
                 }}
                 validationSchema={
                     Yup.object().shape({
-                        username: Yup.string().required('You must tell us your name'),
-                        password: Yup.string().min(6, 'Password must be at least 6 characters').required('You must have a password'),
+                        username: Yup.string().required('Please enter a valid username'),
+                        password: Yup.string().min(6, 'Password must be at least 6 characters').required('Please enter a password'),
                 })}
                 onSubmit={values => {
                     axiosWithAuth()
